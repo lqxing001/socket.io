@@ -28,6 +28,13 @@ io.on('connection', function (socket) {
     });
   });
 
+  socket.on('new image', function (data) {
+    socket.broadcast.emit('new image',{
+      username: socket.username,
+      image: data
+    });
+  });
+
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
     if (addedUser) return;
